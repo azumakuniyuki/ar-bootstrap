@@ -1,2 +1,30 @@
 ---
+#  _                 _       _                     ___            _        
+# | |__   ___   ___ | |_ ___| |_ _ __ __ _ _ __   / / |_ __ _ ___| | _____ 
+# | '_ \ / _ \ / _ \| __/ __| __| '__/ _` | '_ \ / /| __/ _` / __| |/ / __|
+# | |_) | (_) | (_) | |_\__ \ |_| | | (_| | |_) / / | || (_| \__ \   <\__ \
+# |_.__/ \___/ \___/ \__|___/\__|_|  \__,_| .__/_/   \__\__,_|___/_|\_\___/
+#                                         |_|                              
 # tasks file for ar-bootstrap
+- name: main | wheel group should be created
+  group: name=wheel system=yes state=present
+
+- name: main | Deploy .profile and .bash_profile into /root
+  when: ansible_system == "Linux"
+  template: >
+    src=root/dot.{{ item }}.j2
+    dest=/root/.{{ item }}
+  with_items:
+    - profile
+    - bash_profile
+
+- name: main | Deploy .exrc into /root
+  template: >
+    src=root/dot.{{ item }}.j2
+    dest=/root/.{{ item }}
+  with_items:
+    - exrc
+
+- include: install-pkg.yml
+- include: make-config.yml
+
