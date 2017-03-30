@@ -1,0 +1,70 @@
+---
+#  _                 _       _                     ___            _        
+# | |__   ___   ___ | |_ ___| |_ _ __ __ _ _ __   / / |_ __ _ ___| | _____ 
+# | '_ \ / _ \ / _ \| __/ __| __| '__/ _` | '_ \ / /| __/ _` / __| |/ / __|
+# | |_) | (_) | (_) | |_\__ \ |_| | | (_| | |_) / / | || (_| \__ \   <\__ \
+# |_.__/ \___/ \___/ \__|___/\__|_|  \__,_| .__/_/   \__\__,_|___/_|\_\___/
+#  
+# install-pkg
+- block:
+    - name: install-pkg | FreeBSD | Each packages should be removed
+      pkgng: name={{ item }} state=absent
+      with_items: "{{ packages.freebsd.removed }}"
+
+    - name: install-pkg | FreeBSD | Each package for development should be installed
+      pkgng:  name={{ item }} state=present
+      with_items: "{{ packages.freebsd.install.devel }}"
+
+    - name: install-pkg | FreeBSD | Each package for utils should be installed
+      pkgng:  name={{ item }} state=present
+      with_items: "{{ packages.freebsd.install.utils }}"
+
+    - name: install-pkg | FreeBSD | Each package for Python should be installed
+      pkgng:  name={{ item }} state=present
+      with_items: "{{ packages.freebsd.install.python }}"
+  when: ansible_os_family == "FreeBSD"
+
+# -----------------------------------------------------------------------------
+- block:
+    - name: install-pkg | RedHat | Each packages should be removed
+      yum: name={{ item }} state=absent
+      with_items: "{{ packages.redhat.removed }}"
+
+    - name: install-pkg | RedHat | Each package for development should be installed
+      yum:  name={{ item }} state=present
+      with_items: "{{ packages.redhat.install.devel }}"
+
+    - name: install-pkg | RedHat | Each package for utils should be installed
+      yum:  name={{ item }} state=present
+      with_items: "{{ packages.redhat.install.utils }}"
+
+    - name: install-pkg | RedHat | Each package for Python should be installed
+      yum:  name={{ item }} state=present
+      with_items: "{{ packages.redhat.install.python }}"
+  when: ansible_os_family == "RedHat"
+
+# -----------------------------------------------------------------------------
+- block:
+    - name: install-pkg | Debian | Each packages should be removed
+      apt: name={{ item }} state=absent
+      with_items: "{{ packages.debian.removed }}"
+
+    - name: install-pkg | Debian | Each package for development should be installed
+      apt: pkg={{ item }} state=present
+      with_items: "{{ packages.debian.install.devel }}"
+
+    - name: install-pkg | Debian | Each package for utils should be installed
+      apt:  name={{ item }} state=present
+      with_items: "{{ packages.debian.install.utils }}"
+
+    - name: install-pkg | Debian | Each package for Python should be installed
+      apt:  name={{ item }} state=present
+      with_items: "{{ packages.debian.install.python }}"
+  when: ansible_os_family == "Debian"
+
+# -----------------------------------------------------------------------------
+- name: install-pkg | pip command should be installed
+  shell: >
+    creates=/usr/bin/pip
+    easy_install pip
+
