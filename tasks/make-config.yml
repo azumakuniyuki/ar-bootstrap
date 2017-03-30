@@ -6,17 +6,17 @@
 # |_.__/ \___/ \___/ \__|___/\__|_|  \__,_| .__/_/   \__\__,_|___/_|\_\___/
 #                                         |_|                              
 # make-config
-- name: make-config | {{ local.dir }} directory should be created
+- name: make-config | {{ bootstrap.local.dir }} directory should be created
   file: >
-    path={{ local.dir }}
+    path={{ bootstrap.local.dir }}
     mode=0775
     owner=root
     group=wheel
     state=directory
 
-- name: make-config | {{ local.src }} directory should be created
+- name: make-config | {{ bootstrap.local.src }} directory should be created
   file: >
-    path={{ local.src }}
+    path={{ bootstrap.local.src }}
     mode=0775
     owner=root
     group=wheel
