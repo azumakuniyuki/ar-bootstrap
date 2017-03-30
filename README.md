@@ -1,38 +1,71 @@
-Role Name
-=========
+Ansible Role: bootstrap
+================================================================================
 
-A brief description of the role goes here.
+Install some packages and deploy some files on RHEL/CentOS, FreeBSD, or Ubuntu.
+
+- Install packages for development: autoconf, automake, git, patch, and so on.
+- Install utilitiy packages: zip, bzip2, bash, zsh, wget, ...
+- Install Python related packages
+- Deploy /root/.proffile, /root/.exrc, /etc/motd
 
 Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+--------------------------------------------------------------------------------
+No requiremetns.
 
 Role Variables
---------------
+--------------------------------------------------------------------------------
+These variables are defined in `defaults/main.yml` file for being removed and
+installed packages on each supported platform.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+packages:
+  freebsd:
+    removed: []
+    install:
+      devel: [
+        'autoconf', 'automake', 'gcc', 'gettext', 'git', 'ncurses', 'openssl',
+        'patch', 'pcre', 'readline'
+      ]
+      utils: ['bzip2', 'zip', 'bash', 'wget', 'ja-nkf', 'bash', 'zsh']
+      python: ['python27', 'py27-pip', 'py27-virtualenv']
+  redhat:
+    removed: []
+    install:
+      devel: [
+        'autoconf', 'automake', 'gcc', 'gcc-c++', 'gettext', 'gettext-devel',
+        'git', 'ncurses', 'ncurses-devel', 'openssl-devel', 'patch', 'pcre',
+        'pcre-devel', 'perl-core', 'readline', 'readline-devel'
+      ]
+      utils: ['bzip2', 'zip', 'zlib', 'zlib-devel', 'bc', 'wget', 'telnet', 'finger']
+      python: ['python-setuptools', 'libselinux-python']
+  debian:
+    removed: []
+    install:
+      devel: [
+        'autotools-dev', 'autoconf2.59', 'automake1.11', 'gcc', 'gettext', 'git',
+        'libncurses-dev', 'libpcre3', 'libpcre3-dev', 'libreadline6-dev',
+        'libreadline6', 'ncurses-dev', 'openssl', 'patch'
+      ]
+      utils: ['bzip2', 'zip', 'zlib1g', 'zlib1g-dev', 'bc', 'wget', 'telnet', 'finger']
+      python: ['python-pip', 'python-selinux', 'python-virtualenv']
+```
 
 Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+--------------------------------------------------------------------------------
+None
 
 Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+--------------------------------------------------------------------------------
+```yaml
+- hosts: servers
+  roles:
+     - azumakuniyuki.bootstrap
+```
 
 License
--------
-
+--------------------------------------------------------------------------------
 BSD
 
 Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+--------------------------------------------------------------------------------
+[azumakuniyuki](http://nyaan.jp/)
