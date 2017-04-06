@@ -28,7 +28,10 @@ bootstrap:
           'git', 'ncurses', 'ncurses-devel', 'openssl-devel', 'patch', 'pcre',
           'pcre-devel', 'perl-core', 'readline', 'readline-devel'
         ]
-        utils: ['bzip2', 'zip', 'zlib', 'zlib-devel', 'bc', 'wget', 'telnet', 'finger']
+        utils: [
+            'bzip2', 'zip', 'zlib', 'zlib-devel', 'bc', 'wget', 'telnet',
+            'finger', 'jq', 'socat'
+        ]
         python: ['python-setuptools', 'libselinux-python']
     debian:
       removed: []
