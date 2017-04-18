@@ -7,23 +7,30 @@
 #                                         |_|                              
 # tasks file for ar-bootstrap
 - name: main | wheel group should be created
-  group: name=wheel system=yes state=present
+  group:
+    name:   "wheel"
+    system: "yes"
+    state:  "present"
 
 - name: main | Deploy .profile and .bash_profile into /root
   when: ansible_system == "Linux"
-  template: >
-    src=root/dot.{{ item }}.j2
-    dest=/root/.{{ item }}
+  template:
+    src:  "root/dot.{{ item }}.j2"
+    dest: "/root/.{{ item }}"
   with_items:
-    - profile
-    - bash_profile
+    - "profile"
+    - "bash_profile"
 
 - name: main | Deploy .exrc into /root
-  template: >
-    src=root/dot.{{ item }}.j2
-    dest=/root/.{{ item }}
+  template:
+    src:  "root/dot.{{ item }}.j2"
+    dest: "/root/.{{ item }}"
   with_items:
-    - exrc
+    - "exrc"
+
+- name: main | {{ ansible_fqdn }} should be set as a hostname
+  hostname:
+    name: "{{ ansible_fqdn }}"
 
 - include: install-pkg.yml
 - include: make-config.yml

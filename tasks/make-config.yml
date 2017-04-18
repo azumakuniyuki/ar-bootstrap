@@ -7,23 +7,24 @@
 #                                         |_|                              
 # make-config
 - name: make-config | {{ bootstrap.local.dir }} directory should be created
-  file: >
-    path={{ bootstrap.local.dir }}
-    mode=0775
-    owner=root
-    group=wheel
-    state=directory
+  file:
+    path:  "{{ bootstrap.local.dir }}"
+    mode:  "0775"
+    owner: "root"
+    group: "wheel"
+    state: "directory"
 
 - name: make-config | {{ bootstrap.local.src }} directory should be created
-  file: >
-    path={{ bootstrap.local.src }}
-    mode=0775
-    owner=root
-    group=wheel
-    state=directory
+  file:
+    path:  "{{ bootstrap.local.src }}"
+    mode:  "0775"
+    owner: "root"
+    group: "wheel"
+    state: "directory"
 
-- name: make-config | Deploy /etc/motd
-  template: >
-    src=etc/motd.j2
-    dest=/etc/motd
+- name: make-config | /etc/motd should be deployed
+  template:
+    src:    "etc/motd.j2"
+    dest:   "/etc/motd"
+    backup: "no"
 
