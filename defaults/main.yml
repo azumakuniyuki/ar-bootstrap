@@ -29,7 +29,7 @@ bootstrap:
           "pcre-devel", "perl-core", "readline", "readline-devel"
         ]
         utils: [
-            "bzip2", "zip", "zlib", "zlib-devel", "bc", "wget", "telnet",
+            "bzip2", "zip", "zlib", "zlib-devel", "bc", "wget", "telnet", "nc",
             "finger", "jq", "socat"
         ]
         python: ["python-setuptools", "libselinux-python"]
