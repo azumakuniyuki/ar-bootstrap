@@ -30,7 +30,7 @@ bootstrap:
         ]
         utils: [
             "bzip2", "zip", "zlib", "zlib-devel", "bc", "wget", "telnet", "nc",
-            "finger", "jq", "socat"
+            "finger"
         ]
         python: ["python-setuptools", "libselinux-python"]
     debian:
