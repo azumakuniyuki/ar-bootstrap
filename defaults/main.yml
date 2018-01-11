@@ -33,6 +33,7 @@ bootstrap:
             "finger"
         ]
         python: ["python-setuptools", "libselinux-python"]
+        others: ["jq", "socat"]
     debian:
       removed: []
       install:
