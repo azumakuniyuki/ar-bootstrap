@@ -57,13 +57,6 @@
         name:  "{{ item }}"
         state: "present"
       with_items: "{{ bootstrap.packages.redhat.install.python }}"
-
-    - name: install-pkg | RedHat | Other packages should be installed
-      ignore_errors: true
-      yum: 
-        name:  "{{ item }}"
-        state: "present"
-      with_items: "{{ bootstrap.packages.redhat.install.others }}"
   when: ansible_os_family == "RedHat"
 
 # -----------------------------------------------------------------------------
@@ -94,18 +87,8 @@
   when: ansible_os_family == "Debian"
 
 # -----------------------------------------------------------------------------
-- block:
-    - name: install-pkg | RedHat | pip should be installed from EPEL
-      when: ansible_distribution_major_version < 7
-      yum:
-        name: "python-pip"
-        state: "present"
-        enablerepo: "epel"
-
-    - name: install-pkg | pip command should be installed
-      when: ansible_distribution_major_version > 6
-      shell: easy_install pip
-      args:
-        creates: "/usr/bin/pip"
-  when: ansible_os_family == "RedHat"
+- name: install-pkg | pip command should be installed
+  shell: easy_install pip
+  args:
+    creates: "/usr/bin/pip"
 
