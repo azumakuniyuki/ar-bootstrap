@@ -30,7 +30,7 @@ bootstrap:
         ]
         utils: [
             "bzip2", "zip", "zlib", "zlib-devel", "bc", "wget", "telnet", "nc",
-            "finger", "glances"
+            "finger", "glances", "mlocate", "nkf"
         ]
         python: ["python-setuptools", "libselinux-python"]
         others: ["jq", "socat"]
