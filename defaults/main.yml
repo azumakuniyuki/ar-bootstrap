@@ -39,8 +39,8 @@ bootstrap:
       install:
         devel: [
           "autotools-dev", "autoconf2.59", "automake1.11", "gcc", "gettext", "git",
-          "libncurses-dev", "libpcre3", "libpcre3-dev", "libreadline6-dev",
-          "libreadline6", "ncurses-dev", "openssl", "patch"
+          "libncurses-dev", "libpcre3", "libpcre3-dev", "libreadline-dev",
+          "libreadline7", "ncurses-dev", "openssl", "patch"
         ]
         utils: ["bzip2", "zip", "zlib1g", "zlib1g-dev", "bc", "wget", "telnet", "finger"]
         python: ["python-pip", "python-selinux", "python-virtualenv"]

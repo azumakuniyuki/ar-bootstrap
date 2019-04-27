@@ -40,6 +40,11 @@
         state: "absent"
       with_items: "{{ bootstrap.packages.redhat.removed }}"
 
+    - name: install-pkg | RedHat | EPEL Release should be installed
+      yum:
+        name:  "epel-release"
+        state: "present"
+
     - name: install-pkg | RedHat | Each package for development should be installed
       yum:
         name:  "{{ item }}"
