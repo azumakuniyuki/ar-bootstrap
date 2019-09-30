@@ -64,27 +64,23 @@
 - block:
     - name: install-pkg | Debian | Each packages should be removed
       apt:
-        name:  "{{ item }}"
+        name:  "{{ bootstrap.packages.debian.removed }}"
         state: "absent"
-      with_items: "{{ bootstrap.packages.debian.removed }}"
 
     - name: install-pkg | Debian | Each package for development should be installed
       apt:
-        name:  "{{ item }}"
+        name:  "{{ bootstrap.packages.debian.install.devel }}"
         state: "present"
-      with_items: "{{ bootstrap.packages.debian.install.devel }}"
 
     - name: install-pkg | Debian | Each package for utils should be installed
       apt:
-        name:  "{{ item }}"
+        name:  "{{ bootstrap.packages.debian.install.utils }}"
         state: "present"
-      with_items: "{{ bootstrap.packages.debian.install.utils }}"
 
     - name: install-pkg | Debian | Each package for Python should be installed
       apt:
-        name:  "{{ item }}"
+        name:  "{{ bootstrap.packages.debian.install.python }}"
         state: "present"
-      with_items: "{{ bootstrap.packages.debian.install.python }}"
   when: ansible_os_family == "Debian"
 
 # -----------------------------------------------------------------------------
