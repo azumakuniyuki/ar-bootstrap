@@ -35,3 +35,5 @@
 - include: install-pkg.yml
 - include: make-config.yml
 - include: build-local.yml
+- include: boot-script.yml
+

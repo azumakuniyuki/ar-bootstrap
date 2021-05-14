@@ -58,6 +58,11 @@
       yum: 
         name:  "{{ bootstrap.packages.redhat.install.python }}"
         state: "present"
+
+    - name: install-pkg | RedHat | Other packages should be installed
+      yum: 
+        name:  "{{ bootstrap.packages.redhat.install.others }}"
+        state: "present"
   when: ansible_os_family == "RedHat"
 
 # -----------------------------------------------------------------------------

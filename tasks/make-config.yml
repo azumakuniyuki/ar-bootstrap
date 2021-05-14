@@ -28,3 +28,21 @@
     dest:   "/etc/motd"
     backup: "no"
 
+
+- name: make-config | Timezone should be configured (1)
+  register: timezone
+  ignore_errors: true
+  changed_when: false
+  shell: timedatectl status | grep "{{ bootstrap.timezone }}"
+
+- name: make-config | Timezone should be configured (2)
+  when: timezone.rc == 1
+  shell: timedatectl set-timezone {{ bootstrap.timezone }}
+
+- name: make-config | Deploy /etc/yum/yum-cron.conf
+  notify: Restart yum-cron
+  template:
+    src:  "etc/yum/yum-cron.conf.j2"
+    dest: "/etc/yum/yum-cron.conf"
+    mode: "0644"
+

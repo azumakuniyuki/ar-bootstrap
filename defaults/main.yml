@@ -7,6 +7,7 @@
 #                                         |_|                                           
 # defaults file for ar-bootstrap
 bootstrap:
+  timezone: "Asia/Tokyo"
   local:
     dir: "/usr/local"
     src: "/usr/local/src"
@@ -33,7 +34,7 @@ bootstrap:
             "finger", "glances", "mlocate", "nkf"
         ]
         python: ["python-setuptools", "libselinux-python"]
-        others: ["jq", "socat"]
+        others: ["yum-cron", "jq", "socat"]
     debian:
       removed: []
       install:
