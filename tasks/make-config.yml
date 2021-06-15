@@ -40,6 +40,7 @@
   shell: timedatectl set-timezone {{ bootstrap.timezone }}
 
 - name: make-config | Deploy /etc/yum/yum-cron.conf
+  when: ansible_os_family == "RedHat"
   notify: Restart yum-cron
   template:
     src:  "etc/yum/yum-cron.conf.j2"

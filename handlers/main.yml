@@ -7,6 +7,7 @@
 #                                         |_|                                                
 # handlers file for ar-bootstrap
 - name: Restart yum-cron
+  when: ansible_os_family == "RedHat"
   service:
     name:  "yum-cron"
     state: "restarted"

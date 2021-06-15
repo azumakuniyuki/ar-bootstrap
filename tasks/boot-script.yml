@@ -7,11 +7,13 @@
 #                                         |_|                              
 # boot-script
 - name: boot-script | yum-cron should be started
+  when: ansible_os_family == "RedHat"
   service:
     name:    "yum-cron"
     enabled: "yes"
 
 - name: boot-script | yum-cron should be enabled
+  when: ansible_os_family == "RedHat"
   service:
     name:  "yum-cron"
     state: "started"
