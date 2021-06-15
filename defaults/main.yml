@@ -39,10 +39,10 @@ bootstrap:
       removed: []
       install:
         devel: [
-          "autotools-dev", "autoconf2.59", "automake1.11", "gcc", "gettext", "git",
+          "autotools-dev", "autoconf", "automake", "gcc", "gettext", "git",
           "libncurses-dev", "libpcre3", "libpcre3-dev", "libreadline-dev",
-          "libreadline7", "ncurses-dev", "openssl", "patch"
+          "libreadline8", "ncurses-dev", "openssl", "patch"
         ]
-        utils: ["bzip2", "zip", "zlib1g", "zlib1g-dev", "bc", "wget", "telnet", "finger"]
-        python: ["python-pip", "python-selinux", "python-virtualenv"]
-  
+        utils: ["bzip2", "zip", "zlib1g", "zlib1g-dev", "bc", "wget", "telnet", "finger", "net-tools"]
+        python: ["python3-pip", "python3-selinux", "python3-virtualenv"]
+ 
