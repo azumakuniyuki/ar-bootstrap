@@ -12,3 +12,9 @@
     name:  "yum-cron"
     state: "restarted"
 
+- name: Restart timesyncd
+  when: ansible_os_family == "Debian"
+  service:
+    name:  "timesyncd"
+    state: "restarted"
+
